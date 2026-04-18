@@ -19,11 +19,11 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
-
+ 
 /* ══ PANTALLAS GLOBALES ══ */
 .screen{display:none;}
 .screen.active{display:block;}
-
+ 
 /* ══ PORTADA ══ */
 #scrPortada{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
@@ -69,7 +69,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
   font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:8px;
 }
 .btn-secondary:hover{background:rgba(255,255,255,.1);color:#fff;}
-
+ 
 /* ══ TOPBAR ══ */
 .topbar{
   background:var(--card);border-bottom:1px solid var(--line);
@@ -88,7 +88,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .pg-fill{height:100%;background:linear-gradient(90deg,var(--n1),var(--n4));border-radius:99px;transition:width .5s;}
 .pg-txt{font-size:11px;color:var(--muted);}
 .btn-logout{padding:5px 12px;border-radius:7px;background:var(--warnl);color:var(--warn);border:none;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;}
-
+ 
 /* ══ PANTALLA BIENVENIDA (perfil del estudiante) ══ */
 .bienvenida-wrap{max-width:700px;margin:0 auto;padding:32px 20px 60px;}
 .bv-hero{
@@ -114,7 +114,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .btn-modulos:hover{box-shadow:0 6px 20px rgba(17,122,101,.35);}
 .btn-ver-prog{background:var(--card);color:var(--n4);border:2px solid var(--n4l);}
 .btn-ver-prog:hover{background:var(--n4l);}
-
+ 
 /* ══ EXAMEN ══ */
 #scrExamen{min-height:100vh;}
 .exam-topbar{
@@ -130,7 +130,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .timer{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--ink);}
 .timer.urgent{color:var(--warn);animation:pulse 1s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
+ 
 .exam-body{max-width:780px;margin:0 auto;padding:28px 18px 80px;}
 .seccion-hdr{
   border-radius:var(--r);padding:14px 20px;margin:28px 0 16px;color:white;
@@ -163,7 +163,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .opcion.sel.n4 .op-let{background:var(--n4);color:white;border-color:var(--n4);}
 .btn-enviar{display:block;width:100%;max-width:360px;margin:36px auto 0;padding:15px;background:linear-gradient(135deg,var(--n3),#0E6655);color:white;border:none;border-radius:11px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;}
 .btn-enviar:hover{box-shadow:0 8px 24px rgba(17,122,101,.4);transform:translateY(-1px);}
-
+ 
 /* ══ RESULTADO EXAMEN ══ */
 #scrResultado{min-height:100vh;}
 .res-hero{background:linear-gradient(150deg,#0B1C2C,#163B5F 50%,#0B2D1E);color:white;text-align:center;padding:48px 20px 72px;}
@@ -194,7 +194,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .int-row{display:flex;gap:8px;margin-bottom:8px;font-size:13px;line-height:1.5;}
 .btn-continuar{display:block;width:100%;max-width:380px;margin:24px auto 0;padding:15px;background:linear-gradient(135deg,var(--n3),var(--n1));color:white;border:none;border-radius:11px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;}
 .btn-continuar:hover{box-shadow:0 8px 24px rgba(17,122,101,.4);transform:translateY(-1px);}
-
+ 
 /* ══ MÓDULOS ══ */
 #scrModulos{min-height:100vh;}
 .mod-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 54px);}
@@ -213,7 +213,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .sb-title{flex:1;line-height:1.3;font-size:12px;}
 .mod-main{padding:28px 32px 60px;max-width:800px;}
 @media(max-width:900px){.mod-main{padding:20px 16px 60px;}}
-
+ 
 /* Módulo contenido */
 .mod-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;color:white;margin-bottom:12px;}
 .mod-header h2{font-family:'Lora',serif;font-size:24px;color:var(--ink);line-height:1.3;margin-bottom:6px;}
@@ -231,7 +231,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .lect-body{padding:22px 26px;font-family:'Lora',serif;font-size:15px;line-height:1.9;color:#2C3E50;}
 .lect-body p{margin-bottom:10px;}.lect-body p:last-child{margin-bottom:0;}
 .preg-section h3{font-family:'Lora',serif;font-size:17px;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:7px;}
-
+ 
 /* resultado módulo */
 .res-mod{background:var(--card);border-radius:var(--r);padding:24px;margin-top:20px;text-align:center;box-shadow:var(--sh);}
 .rm-ico{font-size:44px;margin-bottom:10px;}
@@ -248,7 +248,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .btn-next{background:linear-gradient(135deg,var(--n3),#0E6655);color:white;}
 .btn-next:hover{box-shadow:0 5px 18px rgba(17,122,101,.35);}
 .btn-next:disabled{opacity:.4;cursor:not-allowed;}
-
+ 
 /* ══ PROGRESO VISUAL ══ */
 #scrProgreso{min-height:100vh;}
 .prog-wrap{max-width:720px;margin:0 auto;padding:28px 18px 60px;}
@@ -270,7 +270,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .mapa-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
 .mapa-cell{border-radius:8px;padding:8px 4px;text-align:center;font-size:10px;font-weight:700;background:var(--line);color:var(--muted);transition:all .3s;}
 .mapa-cell.done{color:white;}
-
+ 
 /* ══ PANEL DOCENTE ══ */
 #scrDocente{min-height:100vh;}
 .doc-topbar{background:linear-gradient(135deg,#1C2833,#2E4057);color:white;padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
@@ -314,7 +314,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
 </style>
 </head>
 <body>
-
+ 
 <!-- ══════════ PORTADA ══════════ -->
 <div id="scrPortada" class="screen active">
   <div class="portada-box">
@@ -363,7 +363,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
     </div>
   </div>
 </div>
-
+ 
 <!-- ══════════ BIENVENIDA ══════════ -->
 <div id="scrBienvenida" class="screen">
   <div class="topbar">
@@ -391,7 +391,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
     <div id="bvBotones"></div>
   </div>
 </div>
-
+ 
 <!-- ══════════ EXAMEN ══════════ -->
 <div id="scrExamen" class="screen">
   <div class="exam-topbar">
@@ -404,7 +404,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
   </div>
   <div class="exam-body" id="examBody"></div>
 </div>
-
+ 
 <!-- ══════════ RESULTADO EXAMEN ══════════ -->
 <div id="scrResultado" class="screen">
   <div class="res-hero">
@@ -420,7 +420,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
     <button class="btn-continuar" onclick="irAModulos()">Continuar con los módulos de lectura →</button>
   </div>
 </div>
-
+ 
 <!-- ══════════ MÓDULOS ══════════ -->
 <div id="scrModulos" class="screen">
   <div class="topbar">
@@ -442,7 +442,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
     <div class="mod-main" id="modMain"></div>
   </div>
 </div>
-
+ 
 <!-- ══════════ PROGRESO ══════════ -->
 <div id="scrProgreso" class="screen">
   <div class="topbar">
@@ -454,7 +454,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
   </div>
   <div class="prog-wrap" id="progContenido"></div>
 </div>
-
+ 
 <!-- ══════════ PANEL DOCENTE ══════════ -->
 <div id="scrDocente" class="screen">
   <div class="doc-topbar">
@@ -498,30 +498,30 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle;}
     <button class="btn-volver" onclick="logout()">← Volver al inicio</button>
   </div>
 </div>
-
+ 
 <script>
 // ══════════════════════════════════════════════════════════════
 // BASE DE DATOS
 // ══════════════════════════════════════════════════════════════
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxDMpYDZY4fAJNCnNr-fZVYuvjZ1AGQh2Jgdcu3wvreCZFQKOeFds9U74_qfPLU0pTZwA/exec';
-
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyYJi0glJP-5-NWxmM-4HwlBRXauPGvRu6Ob9BAIa5auEGyNTHY9BwKFLflmC5nRogJ/exec';
+ 
 const DB = {
   key: 'dpm_integral',
-
+ 
   get() {
     try { return JSON.parse(localStorage.getItem(this.key)||'{}'); }
     catch(e){ return {}; }
   },
   getAll() { return Object.values(this.get()); },
   getEst(id) { return this.get()[id]||null; },
-
+ 
   save(est) {
     const d = this.get();
     d[est.id] = est;
     try { localStorage.setItem(this.key, JSON.stringify(d)); } catch(e){}
     this.syncToSheets(est);
   },
-
+ 
   syncToSheets(est) {
     fetch(SHEETS_URL, {
       method: 'POST',
@@ -530,7 +530,7 @@ const DB = {
       body: JSON.stringify(est)
     }).catch(e => console.log('Sync offline:', e));
   },
-
+ 
   async loadFromSheets() {
     try {
       const res = await fetch(SHEETS_URL + '?action=getAll', {mode:'cors'});
@@ -561,19 +561,19 @@ const DB = {
     } catch(e) { console.log('Load error:', e); }
     return false;
   },
-
+ 
   delete(id) {
     const d=this.get(); delete d[id];
     try { localStorage.setItem(this.key,JSON.stringify(d)); } catch(e){}
   },
   clear() { try { localStorage.removeItem(this.key); } catch(e){} }
 };
-
+ 
 // ── ID único por estudiante ──
 function mkId(nombre, seccion) {
   return (nombre.trim().toLowerCase().replace(/\s+/g,'_')+'_'+seccion).replace(/[^a-z0-9_]/g,'');
 }
-
+ 
 // ── Clasificar nivel/perfil ──
 function clasificar(scores) {
   const [n1,n2,n3,n4] = scores.map(s=>parseInt(s)||0);
@@ -589,7 +589,7 @@ function clasificar(scores) {
   else{perfil='IRREGULAR';nivel=1;}
   return{perfil,nivel,color:C[nivel],d1,d2,d3,d4};
 }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // BANCO DE PREGUNTAS DEL EXAMEN (28 preguntas, 4 niveles)
 // ══════════════════════════════════════════════════════════════
@@ -603,7 +603,7 @@ const TEXTOS_EX = {
   t7:{nivel:4,clase:'n4',titulo:'Texto 7 — El agua y la vida',contenido:['El agua representa entre el 60 y 70% de la masa corporal de un adulto. Transporta nutrientes, regula la temperatura y elimina toxinas. La deshidratación, incluso leve, afecta la concentración y la memoria.','Los especialistas recomiendan consumir entre dos y tres litros diarios.']},
   t8:{nivel:4,clase:'n4',titulo:'Texto 8 — Por qué beber más agua',contenido:['A pesar de conocer la importancia del agua, la mayoría no consume la cantidad recomendada. Las bebidas azucaradas no pueden sustituirla: contienen sustancias que aumentan la necesidad de hidratación.','Es urgente desarrollar hábitos de consumo de agua pura desde la infancia, con programas educativos y el ejemplo de los adultos.']}
 };
-
+ 
 const PREGS_EX = [
   {id:1,nivel:1,texto:'¿Cuándo salió doña Carmen al patio?',opciones:['Mañana de abril','Tarde de mayo','Noche de junio','Mañana de mayo'],correcta:1,ref:'t1'},
   {id:2,nivel:1,texto:'¿Qué hacía Pedro cuando empezó a llover?',opciones:['Jugaba con el balón','Recogía la ropa','Corría detrás de la gallina','Entraba a la casa'],correcta:2,ref:'t1'},
@@ -634,7 +634,7 @@ const PREGS_EX = [
   {id:27,nivel:4,texto:'"Las bebidas azucaradas sustituyen al agua" es refutado en T8 porque:',opciones:['Son muy caras','Aumentan la necesidad de hidratación','No existen en RD','Solo dañan a los niños'],correcta:1,ref:'t8'},
   {id:28,nivel:4,texto:'¿Cuál es la intención final del autor del Texto 8?',opciones:['Informar sobre propiedades del agua','Narrar experiencias de deshidratación','Persuadir de adoptar hábitos de hidratación desde niños','Exponer tipos de agua'],correcta:2,ref:'t8'}
 ];
-
+ 
 // ══════════════════════════════════════════════════════════════
 // BANCO DE 20 MÓDULOS
 // ══════════════════════════════════════════════════════════════
@@ -660,13 +660,13 @@ const MODS = [
   {id:19,nivel:4,titulo:'Síntesis: capturar lo esencial',sub:'Reconocer la síntesis apropiada de un texto',obj:'Aprenderás a identificar cuál resumen es correcto, completo y fiel al original.',est:['Una buena síntesis incluye la idea principal y puntos esenciales.','No debe incluir detalles menores.','No debe cambiar el sentido o postura del texto.','Compara cada opción: ¿es fiel? ¿es completa? ¿agrega algo que no estaba?'],texto:{titulo:'La inteligencia artificial en la educación',contenido:['La inteligencia artificial (IA) está transformando la educación. Herramientas basadas en IA pueden personalizar el aprendizaje, adaptando el ritmo a las necesidades de cada estudiante.','Sin embargo, el acceso desigual puede ampliar la brecha educativa. Además, existe el riesgo de dependencia tecnológica que afecte el pensamiento crítico. Los expertos coinciden en que la IA debe usarse como apoyo, no como sustituto del docente: la relación humana sigue siendo irreemplazable. En definitiva, la IA ofrece posibilidades valiosas, pero su implementación debe ser cuidadosa, equitativa y centrada en el ser humano.']},preguntas:[{texto:'¿Cuál es la síntesis más apropiada de todo el texto?',opciones:['La IA reemplazará a los docentes','La IA transforma la educación con oportunidades y desafíos; debe usarse como apoyo equitativo centrado en el ser humano','La IA solo funciona en zonas urbanas','Los estudiantes con dificultades no se benefician de la IA'],correcta:1,ok:'¡Correcto! Esa síntesis incluye oportunidad, desafío y conclusión.',no:'Una buena síntesis captura la oportunidad, el desafío y la conclusión del texto.'},{ texto:'¿Cuál es la síntesis más fiel del segundo párrafo?',opciones:['La IA no tiene desventajas','La IA puede ampliar la brecha y crear dependencia que afecte el pensamiento crítico','La IA es perfecta para todos','Los expertos rechazan la IA'],correcta:1,ok:'¡Muy bien! Resume exactamente los dos riesgos del párrafo.',no:'El párrafo menciona dos riesgos: ampliar la brecha y dependencia tecnológica.'},{ texto:'¿Cuál síntesis agrega información que NO está en el texto?',opciones:['"Los expertos dicen que la IA debe ser apoyo, no sustituto"','"La relación humana es irreemplazable"','"Los expertos rechazan la IA porque daña la salud mental"','"El docente es importante para el desarrollo social"'],correcta:2,ok:'¡Excelente! "Daña la salud mental" no aparece en el texto.',no:'"Daña la salud mental" no está en el texto: es información agregada que lo falsea.'},{ texto:'¿Cuál es la postura final del texto sobre la IA?',opciones:['La IA es peligrosa y no debe usarse','La IA tiene posibilidades valiosas pero su uso debe ser cuidadoso y equitativo','La IA ya no es necesaria','La IA solo beneficia a los ricos'],correcta:1,ok:'¡Correcto! La conclusión es: valiosa, pero con condiciones.',no:'"ofrece posibilidades valiosas... pero su implementación debe ser cuidadosa, equitativa".'}]},
   {id:20,nivel:4,titulo:'RETO FINAL — Los cuatro niveles',sub:'Examen de cierre del programa',obj:'¡Llegaste al último módulo! Demostrarás todo lo aprendido: información explícita, vocabulario, propósito, inferencia y evaluación crítica.',est:['Usa todas las estrategias aprendidas.','Lee cada texto con calma y atención.','Para cada pregunta, identifica qué habilidad te evalúa.','¡Confía en lo que has aprendido!'],texto:{titulo:'Carta abierta: El liceo que queremos',contenido:['"Querida comunidad del Liceo Don Pedro Mir: Les escribo como estudiante de sexto grado para compartir algo que me preocupa y también me llena de esperanza."','Nuestras aulas necesitan ventiladores, libros actualizados y conexión a internet. Estos no son lujos: son herramientas básicas para el siglo XXI. Pero también veo lo bueno: maestros que se quedan después de clase, compañeros que se ayudan y una directora que pregunta cómo estamos.','Mi petición es que quienes tienen poder de decisión visiten nuestro liceo cualquier martes ordinario, no en día de visita oficial. Solo así verán lo que somos capaces de lograr con tan poco, y lo que podríamos lograr con un poco más. — Una estudiante de 6to grado']},preguntas:[{texto:'¿Quién escribe la carta y a quién va dirigida?',opciones:['Un maestro a los estudiantes','Una estudiante de 6to a la comunidad del liceo','La directora al Ministerio','Un padre a los maestros'],correcta:1,ok:'¡Correcto! Lo dice claramente: "Les escribo como estudiante de sexto grado".',no:'"Les escribo como estudiante de sexto grado" + "Una estudiante de 6to grado".'},{ texto:'Decir que ventiladores y libros "no son lujos" significa que:',opciones:['Son cosas poco importantes','Son recursos básicos indispensables, no privilegios extras','El liceo no los necesita','Deben ser comprados por los estudiantes'],correcta:1,ok:'¡Muy bien! La estudiante argumenta que son necesidades, no privilegios.',no:'"No son lujos: son herramientas básicas" indica que son necesidades fundamentales.'},{ texto:'¿Qué se infiere de "lo que somos capaces de lograr con tan poco"?',opciones:['El liceo tiene muchos recursos','Los estudiantes avanzan a pesar de recursos limitados','El liceo no necesita más','Los estudiantes no quieren estudiar'],correcta:1,ok:'¡Excelente! "Con tan poco" implica escasez pero también esfuerzo y logros.',no:'"Lograr con tan poco" implica escasez de recursos pero aún así hay logros valiosos.'},{ texto:'¿Cuál es el propósito principal de la carta?',opciones:['Quejarse de los maestros','Informar sobre estadísticas','Argumentar que el liceo merece más inversión, reconociendo también sus fortalezas','Dar instrucciones para mejorar la escuela'],correcta:2,ok:'¡FELICIDADES! Completaste los 20 módulos. ¡Estás listo para las Pruebas Nacionales!',no:'La carta argumenta que el liceo merece más, reconociendo sus fortalezas.'}]}
 ];
-
+ 
 // ══════════════════════════════════════════════════════════════
 // ESTADO ACTUAL
 // ══════════════════════════════════════════════════════════════
 let USR = null; // estudiante activo
 const NC = {1:'#1A5276',2:'#1D6A96',3:'#117A65',4:'#6C3483'};
-
+ 
 // ══════════════════════════════════════════════════════════════
 // NAVEGACIÓN
 // ══════════════════════════════════════════════════════════════
@@ -675,7 +675,7 @@ function show(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // ENTRADA
 // ══════════════════════════════════════════════════════════════
@@ -702,13 +702,13 @@ function entrar() {
   USR = est;
   mostrarBienvenida();
 }
-
+ 
 function toggleLoginDoc() {
   const p = document.getElementById('panelDoc');
   p.style.display = p.style.display === 'none' ? 'block' : 'none';
   if(p.style.display==='block') document.getElementById('docUser').focus();
 }
-
+ 
 function loginDoc() {
   const user = document.getElementById('docUser').value.trim();
   const pass = document.getElementById('docPass').value;
@@ -726,18 +726,18 @@ function loginDoc() {
     document.getElementById('docPass').focus();
   }
 }
-
+ 
 function entrarDocente() { toggleLoginDoc(); }
-
+ 
 function logout() {
   USR = null;
   document.getElementById('pNombre').value='';
   document.getElementById('pSeccion').value='';
   show('scrPortada');
 }
-
+ 
 function irABienvenida() { if(USR) mostrarBienvenida(); else show('scrPortada'); }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // BIENVENIDA
 // ══════════════════════════════════════════════════════════════
@@ -768,18 +768,18 @@ function mostrarBienvenida() {
   bots += `<button class="btn-action btn-ver-prog" onclick="verProgreso()">📊 Ver mi progreso completo</button>`;
   document.getElementById('bvBotones').innerHTML = bots;
 }
-
+ 
 function getProxMod() {
   const comp = USR.completados||[];
   for(let i=1;i<=20;i++) if(!comp.includes(i)) return i;
   return 20;
 }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // EXAMEN DIAGNÓSTICO
 // ══════════════════════════════════════════════════════════════
 let exRespuestas = {}, exTimer = null, exSegundos = 110*60;
-
+ 
 function iniciarExamen() {
   exRespuestas = USR.respuestas || {};
   exSegundos = 110*60;
@@ -788,7 +788,7 @@ function iniciarExamen() {
   renderExamen();
   startExTimer();
 }
-
+ 
 function renderExamen() {
   const body = document.getElementById('examBody');
   body.innerHTML = '';
@@ -825,7 +825,7 @@ function renderExamen() {
   btn.onclick=enviarExamen; body.appendChild(btn);
   exActualizarProg();
 }
-
+ 
 function exSel(id, idx, cls) {
   exRespuestas[id]=idx;
   document.querySelectorAll(`#ep-${id} .opcion`).forEach(b=>b.className='opcion');
@@ -835,13 +835,13 @@ function exSel(id, idx, cls) {
   USR.respuestas=exRespuestas; DB.save(USR);
   exActualizarProg();
 }
-
+ 
 function exActualizarProg() {
   const resp=Object.keys(exRespuestas).length;
   document.getElementById('exProgBar').style.width=(resp/28*100)+'%';
   document.getElementById('exProgTxt').textContent=`${resp} de 28`;
 }
-
+ 
 function startExTimer() {
   if(exTimer) clearInterval(exTimer);
   exTimer=setInterval(()=>{
@@ -854,7 +854,7 @@ function startExTimer() {
     else clearInterval(exTimer);
   },1000);
 }
-
+ 
 function enviarExamen() {
   clearInterval(exTimer);
   const scores=[0,0,0,0];
@@ -866,7 +866,7 @@ function enviarExamen() {
   DB.save(USR);
   mostrarResultadoExamen(scores, res);
 }
-
+ 
 function mostrarResultadoExamen(scores, res) {
   show('scrResultado');
   document.getElementById('resNombreTop').textContent=`${USR.nombre} · ${USR.seccion}`;
@@ -904,14 +904,14 @@ function mostrarResultadoExamen(scores, res) {
   const ints={1:['Lectura guiada con textos cortos','Subrayado de información explícita','Módulos 1 al 5 — trabaja la información explícita'],2:['Ejercicios de vocabulario en contexto','Paráfrasis y actos de habla','Módulos 6 al 10 — trabaja vocabulario y comunicación'],3:['Análisis del propósito discursivo','Comparación de tipos de textos','Módulos 11 al 15 — trabaja comprensión profunda'],4:['Inferencia avanzada y análisis crítico','Comparar textos y evaluar argumentos','Módulos 16 al 20 — trabaja el nivel más alto']};
   document.getElementById('resIntervencion').innerHTML=`<h3>📋 Tu ruta de trabajo</h3>${(ints[res.nivel]||[]).map(i=>`<div class="int-row"><span>▸</span><span>${i}</span></div>`).join('')}${res.perfil==='MIXTO ASCENDENTE'?'<div class="int-row"><span>⚠️</span><span>Intervención focalizada: refuerza solo las competencias base con vacíos.</span></div>':''}`;
 }
-
+ 
 function irAModulos() { show('scrModulos'); renderModSidebar(); cargarMod(0); }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // MÓDULOS DE LECTURA
 // ══════════════════════════════════════════════════════════════
 let modActual = 0;
-
+ 
 function renderModSidebar() {
   USR = DB.getEst(USR.id);
   const comp = USR.completados||[];
@@ -939,7 +939,7 @@ function renderModSidebar() {
   });
   sb.innerHTML=html;
 }
-
+ 
 function irAMod(idx) {
   const m=MODS[idx];
   const comp=USR.completados||[];
@@ -948,7 +948,7 @@ function irAMod(idx) {
   cargarMod(idx);
   window.scrollTo(0,0);
 }
-
+ 
 function cargarMod(idx) {
   modActual=idx;
   renderModSidebar();
@@ -1030,7 +1030,7 @@ function cargarMod(idx) {
   </div>`;
   document.getElementById('modMain').innerHTML=html;
 }
-
+ 
 function modSel(pi, oi) {
   const m=MODS[modActual];
   const verificados=USR.verificados||{};
@@ -1043,7 +1043,7 @@ function modSel(pi, oi) {
   document.querySelectorAll(`#mpc-${pi} .opcion`)[oi].className=`opcion sel n${m.nivel}`;
   document.getElementById(`mpc-${pi}`).classList.add('resp');
 }
-
+ 
 function verificarMod(idx) {
   const m=MODS[idx];
   USR=DB.getEst(USR.id);
@@ -1062,7 +1062,7 @@ function verificarMod(idx) {
   cargarMod(idx);
   window.scrollTo(0,0);
 }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // PROGRESO
 // ══════════════════════════════════════════════════════════════
@@ -1110,7 +1110,7 @@ function verProgreso() {
     <button class="btn-action btn-modulos" onclick="irAModulos()" style="display:block;width:100%;margin-top:4px">📚 Continuar con los módulos</button>`;
   document.getElementById('progContenido').innerHTML=html;
 }
-
+ 
 // ══════════════════════════════════════════════════════════════
 // PANEL DOCENTE
 // ══════════════════════════════════════════════════════════════
@@ -1130,7 +1130,7 @@ async function sincronizarDocente() {
   }
   renderDocente();
 }
-
+ 
 function renderDocente() {
   const data=DB.getAll();
   const total=data.length;
@@ -1159,7 +1159,7 @@ function renderDocente() {
     </div></div>`;
   renderDocTabla();
 }
-
+ 
 function renderDocTabla() {
   let data=DB.getAll();
   const busq=(document.getElementById('docSearch')?.value||'').toLowerCase();
@@ -1186,7 +1186,7 @@ function renderDocTabla() {
     </tr>`;
   }).join('');
 }
-
+ 
 function exportarCSV() {
   const data=DB.getAll();
   if(!data.length){alert('No hay datos para exportar.');return;}
@@ -1202,13 +1202,13 @@ function exportarCSV() {
   a.download=`control_donpedromir_${new Date().toISOString().split('T')[0]}.csv`;
   a.click();
 }
-
+ 
 function limpiarTodos() {
   if(confirm('¿Eliminar TODOS los registros? Esta acción no se puede deshacer.')) {
     DB.clear(); renderDocente();
   }
 }
-
+ 
 // Fecha de hoy
 document.getElementById('pFecha').value=new Date().toISOString().split('T')[0];
 </script>
