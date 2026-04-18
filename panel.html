@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Docente — Don Pedro Mir</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n1:#1A5276;--n1l:#D6EAF8;--n2:#1D6A96;--n2l:#D6EAF8;
+  --n3:#117A65;--n3l:#D5F5E3;--n4:#6C3483;--n4l:#F5EEF8;
+  --gold:#C9860A;--goldl:#FEF3E0;
+  --ok:#117A65;--warn:#C0392B;--warnl:#FDECEA;
+  --ink:#1C2226;--muted:#7B8B96;--line:#E6ECF0;
+  --bg:#F2F5F8;--card:#FFFFFF;
+  --r:12px;--sh:0 2px 16px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);}
+ 
+/* ══ LOGIN ══ */
+#login{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,#0B1C2C 0%,#163B5F 50%,#0B2D1E 100%);
+  padding:24px;
+}
+.login-box{
+  background:rgba(255,255,255,.07);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.14);border-radius:20px;
+  padding:44px 38px;max-width:420px;width:100%;text-align:center;
+}
+.login-box .ico{font-size:48px;margin-bottom:14px;}
+.login-box h1{font-family:'Lora',serif;font-size:22px;color:#fff;margin-bottom:6px;}
+.login-box .sub{color:rgba(255,255,255,.5);font-size:13px;margin-bottom:28px;}
+.login-box input{
+  width:100%;padding:12px 16px;border-radius:9px;margin-bottom:12px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-family:inherit;font-size:15px;outline:none;
+}
+.login-box input::placeholder{color:rgba(255,255,255,.3);}
+.login-box input:focus{border-color:rgba(255,255,255,.5);}
+.btn-login{
+  width:100%;padding:13px;border:none;border-radius:10px;
+  background:linear-gradient(135deg,var(--n3),var(--n1));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
+  transition:all .2s;margin-top:4px;
+}
+.btn-login:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(17,122,101,.4);}
+.login-error{
+  display:none;margin-top:12px;padding:10px;background:rgba(192,57,43,.3);
+  border-radius:8px;color:#FFB3A7;font-size:13px;
+}
+.hint{font-size:11px;color:rgba(255,255,255,.25);margin-top:14px;}
+ 
+/* ══ APP ══ */
+#app{display:none;}
+.topbar{
+  background:linear-gradient(135deg,#1C2833,#2E4057);
+  color:white;padding:0 24px;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+}
+.tb-brand{font-family:'Lora',serif;font-size:17px;}
+.tb-brand em{color:#52A98A;font-style:italic;}
+.tb-right{display:flex;gap:10px;align-items:center;}
+.btn-tb{
+  padding:7px 14px;border-radius:8px;border:none;
+  font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;
+  transition:all .2s;
+}
+.btn-sync{background:var(--n3);color:white;}
+.btn-sync:hover{background:#0E6655;}
+.btn-sync:disabled{opacity:.5;cursor:not-allowed;}
+.btn-export{background:var(--n1);color:white;}
+.btn-export:hover{background:#154360;}
+.btn-print{background:rgba(255,255,255,.15);color:white;}
+.btn-print:hover{background:rgba(255,255,255,.25);}
+.btn-logout{background:var(--warnl);color:var(--warn);}
+ 
+.body{max-width:1100px;margin:0 auto;padding:28px 20px 60px;}
+ 
+/* Status banner */
+.status-banner{
+  border-radius:var(--r);padding:14px 20px;margin-bottom:22px;
+  display:flex;align-items:center;gap:12px;
+  background:var(--n1l);border:1px solid #AED6F1;
+}
+.status-banner.error{background:var(--warnl);border-color:#F5B7B1;}
+.status-banner.loading{background:var(--goldl);border-color:#FAD7A0;}
+.status-banner .st-ico{font-size:22px;flex-shrink:0;}
+.status-banner .st-txt{font-size:13px;color:var(--ink);}
+.status-banner .st-txt strong{color:var(--n1);display:block;font-size:14px;}
+.status-banner.error .st-txt strong{color:var(--warn);}
+.status-banner .st-time{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap;}
+ 
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+@media(max-width:700px){.stats-grid{grid-template-columns:1fr 1fr;}}
+.stat-card{background:var(--card);border-radius:var(--r);padding:18px;box-shadow:var(--sh);border-top:4px solid;}
+.stat-card .sv{font-family:'Lora',serif;font-size:34px;font-weight:700;}
+.stat-card .sl{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.4px;}
+ 
+/* Charts */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+@media(max-width:700px){.charts-grid{grid-template-columns:1fr;}}
+.chart-card{background:var(--card);border-radius:var(--r);padding:22px;box-shadow:var(--sh);}
+.chart-card h3{font-family:'Lora',serif;font-size:16px;color:var(--ink);margin-bottom:16px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.bar-label{font-size:12px;font-weight:600;width:80px;flex-shrink:0;}
+.bar-wrap{flex:1;height:22px;background:var(--line);border-radius:6px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;transition:width .8s ease .2s;}
+.bar-fill span{font-size:11px;font-weight:700;color:white;}
+.bar-val{font-size:12px;font-weight:700;width:35px;text-align:right;flex-shrink:0;}
+ 
+/* Table */
+.tabla-wrap{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;margin-bottom:24px;}
+.tabla-hdr{
+  padding:16px 20px;display:flex;align-items:center;
+  justify-content:space-between;border-bottom:1px solid var(--line);
+  flex-wrap:wrap;gap:10px;
+}
+.tabla-hdr h3{font-family:'Lora',serif;font-size:17px;color:var(--ink);}
+.tabla-controls{display:flex;gap:8px;flex-wrap:wrap;}
+.search-inp{
+  padding:8px 13px;border-radius:8px;border:1.5px solid var(--line);
+  font-family:inherit;font-size:13px;outline:none;min-width:180px;
+}
+.search-inp:focus{border-color:var(--n1);}
+.filter-sel{
+  padding:8px 11px;border-radius:8px;border:1.5px solid var(--line);
+  font-family:inherit;font-size:13px;background:white;outline:none;
+}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:#1C2833;}
+thead th{padding:11px 13px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.8);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--line);transition:background .15s;}
+tbody tr:hover{background:#FAFBFC;}
+tbody td{padding:11px 13px;font-size:13px;vertical-align:middle;}
+.nivel-chip{display:inline-block;padding:3px 11px;border-radius:99px;font-size:11px;font-weight:700;color:white;}
+.pf-chip{display:inline-block;padding:3px 9px;border-radius:6px;font-size:10px;font-weight:700;}
+.pf-av{background:var(--n3l);color:var(--n3);}
+.pf-es{background:var(--n1l);color:var(--n1);}
+.pf-mx{background:var(--goldl);color:var(--gold);}
+.pf-fr{background:var(--warnl);color:var(--warn);}
+.pf-ir{background:var(--n4l);color:var(--n4);}
+.score-dots{display:flex;gap:3px;}
+.sd{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;}
+.mod-dots{display:flex;gap:2px;flex-wrap:wrap;}
+.md{width:8px;height:8px;border-radius:2px;background:var(--line);}
+.md.done{background:var(--n3);}
+.empty-row td{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+ 
+/* Alertas */
+.alertas-wrap{margin-bottom:24px;}
+.alertas-wrap h3{font-family:'Lora',serif;font-size:17px;color:var(--ink);margin-bottom:14px;}
+.alerta{
+  background:var(--card);border-radius:var(--r);padding:14px 18px;
+  box-shadow:var(--sh);display:flex;align-items:center;gap:12px;
+  border-left:4px solid;margin-bottom:10px;
+}
+.alerta .al-ico{font-size:22px;flex-shrink:0;}
+.alerta .al-nombre{font-weight:700;font-size:14px;}
+.alerta .al-txt{font-size:12px;color:var(--muted);margin-top:2px;}
+ 
+@media print{
+  #login,.btn-tb,.tabla-controls{display:none!important;}
+  body{background:white;}
+  .topbar{background:#1C2833!important;-webkit-print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+ 
+<!-- ══ LOGIN ══ -->
+<div id="login">
+  <div class="login-box">
+    <div class="ico">📊</div>
+    <h1>Panel Docente</h1>
+    <p class="sub">Liceo J.E.E. Don Pedro Mir · 2025-2026</p>
+    <input type="text" id="inpUser" placeholder="Usuario" autocomplete="off">
+    <input type="password" id="inpPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn-login" onclick="login()">Entrar al panel →</button>
+    <div class="login-error" id="loginError">Usuario o contraseña incorrectos.</div>
+    <p class="hint">Usuario: admin · Contraseña: donpedromir2026</p>
+  </div>
+</div>
+ 
+<!-- ══ APP ══ -->
+<div id="app">
+  <div class="topbar">
+    <div class="tb-brand">📊 Panel <em>Docente</em> — Don Pedro Mir</div>
+    <div class="tb-right">
+      <button class="btn-tb btn-sync" id="btnSync" onclick="cargarDatos()">🔄 Actualizar</button>
+      <button class="btn-tb btn-export" onclick="exportarCSV()">⬇ CSV</button>
+      <button class="btn-tb btn-print" onclick="window.print()">🖨</button>
+      <button class="btn-tb btn-logout" onclick="logout()">Salir</button>
+    </div>
+  </div>
+ 
+  <div class="body">
+    <!-- Status -->
+    <div class="status-banner loading" id="statusBanner">
+      <div class="st-ico">⏳</div>
+      <div class="st-txt"><strong>Cargando datos...</strong>Conectando con Google Sheets</div>
+    </div>
+ 
+    <!-- Stats -->
+    <div class="stats-grid" id="statsGrid"></div>
+ 
+    <!-- Charts -->
+    <div class="charts-grid">
+      <div class="chart-card"><h3>Distribución por nivel</h3><div id="chartNiveles"></div></div>
+      <div class="chart-card"><h3>Distribución por perfil</h3><div id="chartPerfiles"></div></div>
+    </div>
+ 
+    <!-- Alertas -->
+    <div class="alertas-wrap" id="alertasWrap" style="display:none">
+      <h3>🔔 Alertas y prioridades</h3>
+      <div id="alertasList"></div>
+    </div>
+ 
+    <!-- Tabla -->
+    <div class="tabla-wrap">
+      <div class="tabla-hdr">
+        <h3>Registro completo <span id="totalBadge" style="font-size:13px;font-weight:400;color:var(--muted)"></span></h3>
+        <div class="tabla-controls">
+          <input class="search-inp" type="text" id="searchInp" placeholder="🔍 Buscar nombre..." oninput="filtrarTabla()">
+          <select class="filter-sel" id="filtroSec" onchange="filtrarTabla()">
+            <option value="">Todas las secciones</option>
+            <option>6to-A</option><option>6to-B</option>
+            <option>6to-C</option><option>6to-D</option>
+          </select>
+          <select class="filter-sel" id="filtroNivel" onchange="filtrarTabla()">
+            <option value="">Todos los niveles</option>
+            <option value="1">Nivel 1</option><option value="2">Nivel 2</option>
+            <option value="3">Nivel 3</option><option value="4">Nivel 4</option>
+          </select>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Nombre</th><th>Sección</th><th>Fecha</th>
+            <th>N1</th><th>N2</th><th>N3</th><th>N4</th>
+            <th>Nivel</th><th>Perfil</th><th>Módulos</th><th>Último acceso</th>
+          </tr></thead>
+          <tbody id="tablaBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<script>
+// ══════════════════════════════════════════════
+// CONFIGURACIÓN
+// ══════════════════════════════════════════════
+const SHEET_ID = '1-QVCIrr-KfXmA-93HyeSglasoG2F4os43sv4Rg7UVAQ';
+const SHEET_NAME = 'Datos';
+const NC = {1:'#1A5276',2:'#1D6A96',3:'#117A65',4:'#6C3483'};
+const PF_CLASS = {'AVANZADO':'pf-av','ESTÁNDAR':'pf-es','MIXTO ASCENDENTE':'pf-mx','FRÁGIL':'pf-fr','IRREGULAR':'pf-ir'};
+ 
+let todosLosEstudiantes = [];
+ 
+// ══════════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════════
+function login() {
+  const u = document.getElementById('inpUser').value.trim();
+  const p = document.getElementById('inpPass').value;
+  const err = document.getElementById('loginError');
+  if ((u === 'admin' || u === 'prof.joseph') && p === 'donpedromir2026') {
+    err.style.display = 'none';
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    cargarDatos();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('inpPass').value = '';
+  }
+}
+ 
+function logout() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login').style.display = 'flex';
+  document.getElementById('inpUser').value = '';
+  document.getElementById('inpPass').value = '';
+}
+ 
+// ══════════════════════════════════════════════
+// CARGAR DATOS DESDE GOOGLE SHEETS
+// ══════════════════════════════════════════════
+async function cargarDatos() {
+  const btn = document.getElementById('btnSync');
+  const banner = document.getElementById('statusBanner');
+  btn.disabled = true;
+  btn.textContent = '⏳ Cargando...';
+  banner.className = 'status-banner loading';
+  banner.innerHTML = '<div class="st-ico">⏳</div><div class="st-txt"><strong>Conectando con Google Sheets...</strong>Cargando datos de los estudiantes</div>';
+ 
+  try {
+    // URL pública de Google Sheets en formato CSV
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+    const res = await fetch(url);
+ 
+    if (!res.ok) throw new Error('No se pudo conectar');
+ 
+    const csv = await res.text();
+    const estudiantes = parsearCSV(csv);
+ 
+    if (estudiantes.length === 0) {
+      throw new Error('Sin datos');
+    }
+ 
+    todosLosEstudiantes = estudiantes;
+    const hora = new Date().toLocaleTimeString('es-DO');
+ 
+    banner.className = 'status-banner';
+    banner.innerHTML = `<div class="st-ico">☁️</div><div class="st-txt"><strong>Conectado a Google Sheets</strong>${estudiantes.length} estudiantes cargados correctamente</div><div class="st-time">Actualizado: ${hora}</div>`;
+ 
+    renderStats();
+    renderCharts();
+    renderTabla();
+    renderAlertas();
+ 
+  } catch(err) {
+    banner.className = 'status-banner error';
+    banner.innerHTML = `<div class="st-ico">❌</div><div class="st-txt"><strong>Error al conectar</strong>Verifique que la hoja sea pública o intente de nuevo</div>`;
+    console.error(err);
+  }
+ 
+  btn.disabled = false;
+  btn.textContent = '🔄 Actualizar';
+}
+ 
+// ══════════════════════════════════════════════
+// PARSEAR CSV
+// ══════════════════════════════════════════════
+function parsearCSV(csv) {
+  const lines = csv.split('\n').filter(l => l.trim());
+  if (lines.length < 2) return [];
+ 
+  const estudiantes = [];
+  for (let i = 1; i < lines.length; i++) {
+    const cols = lines[i].match(/(".*?"|[^,]+)(?=,|$)/g) || [];
+    const clean = cols.map(c => c.replace(/^"|"$/g, '').trim());
+ 
+    if (!clean[0]) continue;
+ 
+    const scores = [
+      clean[5] !== '' ? parseInt(clean[5]) : null,
+      clean[6] !== '' ? parseInt(clean[6]) : null,
+      clean[7] !== '' ? parseInt(clean[7]) : null,
+      clean[8] !== '' ? parseInt(clean[8]) : null
+    ];
+ 
+    estudiantes.push({
+      id: clean[0] || '',
+      nombre: clean[1] || '',
+      seccion: clean[2] || '',
+      fechaRegistro: clean[3] || '',
+      examenHecho: clean[4] === 'SI',
+      scores,
+      nivel: clean[9] ? parseInt(clean[9]) : null,
+      perfil: clean[10] || '',
+      completados: clean[11] ? clean[11].split(',').map(n=>parseInt(n.trim())).filter(n=>!isNaN(n)&&n>0) : [],
+      ultimoAcceso: clean[13] || ''
+    });
+  }
+  return estudiantes;
+}
+ 
+// ══════════════════════════════════════════════
+// RENDER STATS
+// ══════════════════════════════════════════════
+function renderStats() {
+  const data = todosLosEstudiantes;
+  const total = data.length;
+  const conExamen = data.filter(r => r.examenHecho).length;
+  const fragiles = data.filter(r => r.perfil === 'FRÁGIL' || r.nivel === 1).length;
+  const promMod = total ? +(data.reduce((a,r)=>a+(r.completados?.length||0),0)/total).toFixed(1) : 0;
+ 
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card" style="border-color:var(--n1)">
+      <div class="sv" style="color:var(--n1)">${total}</div>
+      <div class="sl">Estudiantes registrados</div>
+    </div>
+    <div class="stat-card" style="border-color:var(--n3)">
+      <div class="sv" style="color:var(--n3)">${conExamen}</div>
+      <div class="sl">Con diagnóstico</div>
+    </div>
+    <div class="stat-card" style="border-color:var(--warn)">
+      <div class="sv" style="color:var(--warn)">${fragiles}</div>
+      <div class="sl">Intervención urgente</div>
+    </div>
+    <div class="stat-card" style="border-color:var(--gold)">
+      <div class="sv" style="color:var(--gold)">${promMod}</div>
+      <div class="sl">Módulos prom. completados</div>
+    </div>`;
+}
+ 
+// ══════════════════════════════════════════════
+// RENDER CHARTS
+// ══════════════════════════════════════════════
+function renderCharts() {
+  const data = todosLosEstudiantes;
+  const total = data.length || 1;
+ 
+  // Niveles
+  const cnts = {1:0,2:0,3:0,4:0};
+  data.forEach(r => { if(r.nivel) cnts[r.nivel]++; });
+  const maxN = Math.max(...Object.values(cnts), 1);
+  document.getElementById('chartNiveles').innerHTML = [1,2,3,4].map(n => `
+    <div class="bar-row">
+      <div class="bar-label" style="color:${NC[n]}">Nivel ${n}</div>
+      <div class="bar-wrap">
+        <div class="bar-fill" style="width:${cnts[n]/maxN*100}%;background:${NC[n]}">
+          <span>${cnts[n]}</span>
+        </div>
+      </div>
+      <div class="bar-val" style="color:${NC[n]}">${Math.round(cnts[n]/total*100)}%</div>
+    </div>`).join('');
+ 
+  // Perfiles
+  const pfCnts = {};
+  data.forEach(r => { if(r.perfil) pfCnts[r.perfil] = (pfCnts[r.perfil]||0)+1; });
+  const pfColors = {'AVANZADO':NC[3],'ESTÁNDAR':NC[1],'MIXTO ASCENDENTE':'#C9860A','FRÁGIL':'#C0392B','IRREGULAR':NC[4]};
+  const maxP = Math.max(...Object.values(pfCnts), 1);
+  document.getElementById('chartPerfiles').innerHTML = Object.entries(pfCnts).length ?
+    Object.entries(pfCnts).map(([k,v]) => `
+      <div class="bar-row">
+        <div class="bar-label" style="color:${pfColors[k]||'#888'};font-size:10px;width:100px">${k}</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" style="width:${v/maxP*100}%;background:${pfColors[k]||'#888'}">
+            <span>${v}</span>
+          </div>
+        </div>
+        <div class="bar-val">${Math.round(v/total*100)}%</div>
+      </div>`).join('') :
+    '<p style="color:var(--muted);font-size:13px">Sin datos aún</p>';
+}
+ 
+// ══════════════════════════════════════════════
+// RENDER TABLA
+// ══════════════════════════════════════════════
+function renderTabla(data) {
+  if (!data) data = todosLosEstudiantes;
+  const busq = (document.getElementById('searchInp')?.value||'').toLowerCase();
+  const sec = document.getElementById('filtroSec')?.value||'';
+  const nivel = document.getElementById('filtroNivel')?.value||'';
+ 
+  let filtrados = [...data];
+  if (busq) filtrados = filtrados.filter(r => r.nombre.toLowerCase().includes(busq));
+  if (sec) filtrados = filtrados.filter(r => r.seccion === sec);
+  if (nivel) filtrados = filtrados.filter(r => String(r.nivel) === nivel);
+ 
+  document.getElementById('totalBadge').textContent = `(${filtrados.length} estudiantes)`;
+ 
+  const body = document.getElementById('tablaBody');
+  if (!filtrados.length) {
+    body.innerHTML = `<tr class="empty-row"><td colspan="12">No hay estudiantes que coincidan con los filtros.</td></tr>`;
+    return;
+  }
+ 
+  body.innerHTML = filtrados.sort((a,b)=>(a.nivel||5)-(b.nivel||5)).map((r,i) => {
+    const sc = r.scores || [null,null,null,null];
+    const mods = r.completados || [];
+    const dots = Array(20).fill(0).map((_,j) =>
+      `<div class="md${mods.includes(j+1)?' done':''}" title="M${j+1}"></div>`).join('');
+    return `<tr>
+      <td>${i+1}</td>
+      <td><strong>${r.nombre}</strong></td>
+      <td>${r.seccion}</td>
+      <td style="font-size:11px;color:var(--muted)">${r.fechaRegistro||'—'}</td>
+      ${sc.map((s,j) => `<td style="text-align:center">
+        <span style="font-weight:700;color:${s!==null&&s>=5?NC[j+1]:'#bbb'}">${s!==null?s:'—'}</span>
+      </td>`).join('')}
+      <td>${r.nivel?`<span class="nivel-chip" style="background:${NC[r.nivel]}">${r.nivel}</span>`:'<span style="color:#ccc">—</span>'}</td>
+      <td>${r.perfil?`<span class="pf-chip ${PF_CLASS[r.perfil]||'pf-ir'}">${r.perfil}</span>`:'<span style="color:#ccc">—</span>'}</td>
+      <td>
+        <div class="mod-dots">${dots}</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">${mods.length}/20</div>
+      </td>
+      <td style="font-size:11px;color:var(--muted)">${r.ultimoAcceso||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+ 
+function filtrarTabla() { renderTabla(); }
+ 
+// ══════════════════════════════════════════════
+// RENDER ALERTAS
+// ══════════════════════════════════════════════
+function renderAlertas() {
+  const data = todosLosEstudiantes;
+  const fragiles = data.filter(r => r.perfil === 'FRÁGIL' || r.nivel === 1);
+  const sinExamen = data.filter(r => !r.examenHecho);
+  const estancados = data.filter(r => r.completados?.length > 0 && r.completados.length < 5);
+ 
+  if (!fragiles.length && !sinExamen.length && !estancados.length) {
+    document.getElementById('alertasWrap').style.display = 'none';
+    return;
+  }
+ 
+  document.getElementById('alertasWrap').style.display = 'block';
+  let html = '';
+ 
+  fragiles.forEach(r => {
+    html += `<div class="alerta" style="border-color:var(--warn)">
+      <div class="al-ico">⚠️</div>
+      <div>
+        <div class="al-nombre">${r.nombre} — <span style="color:var(--warn)">${r.perfil||'NIVEL 1'}</span></div>
+        <div class="al-txt">Sección: ${r.seccion} · Módulos: ${r.completados?.length||0}/20 · Requiere intervención urgente</div>
+      </div>
+    </div>`;
+  });
+ 
+  sinExamen.forEach(r => {
+    html += `<div class="alerta" style="border-color:var(--gold)">
+      <div class="al-ico">📝</div>
+      <div>
+        <div class="al-nombre">${r.nombre}</div>
+        <div class="al-txt">Sección: ${r.seccion} · Pendiente de examen diagnóstico</div>
+      </div>
+    </div>`;
+  });
+ 
+  document.getElementById('alertasList').innerHTML = html;
+}
+ 
+// ══════════════════════════════════════════════
+// EXPORTAR CSV
+// ══════════════════════════════════════════════
+function exportarCSV() {
+  if (!todosLosEstudiantes.length) { alert('No hay datos para exportar.'); return; }
+  const cab = 'Nombre,Sección,Fecha,N1,N2,N3,N4,Nivel,Perfil,Módulos,Total,Último Acceso';
+  const filas = todosLosEstudiantes.map(r => {
+    const sc = r.scores||[null,null,null,null];
+    return `"${r.nombre}","${r.seccion}","${r.fechaRegistro||''}",${sc.map(s=>s!==null?s:'').join(',')},${r.nivel||''},"${r.perfil||''}","${(r.completados||[]).join(';')}",${(r.completados||[]).length},"${r.ultimoAcceso||''}"`;
+  });
+  const csv = [cab,...filas].join('\n');
+  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `control_donpedromir_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+}
+ 
+// Enter para login
+document.getElementById('inpUser').addEventListener('keydown', e => {
+  if(e.key==='Enter') document.getElementById('inpPass').focus();
+});
+</script>
+</body>
+</html>
+ 
